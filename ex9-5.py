@@ -19,6 +19,8 @@ def do_eq():
   global second_term
   global result
   global current_number
+  global tax
+  tax=first_term*0.1
   second_term = current_number
   
   if operation == 1:
@@ -27,6 +29,8 @@ def do_eq():
     result = first_term - second_term
   elif operation == 3:
     result = first_term * second_term
+  elif operation == 4:
+    result = first_term+tax
   else:
     if second_term == 0:
       result = 'error'
@@ -64,9 +68,15 @@ def mult():
   do_assignment()
   show_number(current_number)
 
-def divide():
+def tax():
   global operation
   operation = 4
+  do_assignment()
+  show_number(current_number)
+  
+def divide():
+  global operation
+  operation = 5
   do_assignment()
   show_number(current_number)
 
@@ -97,7 +107,9 @@ bd = tk.Button(f, text = '/', command = divide, font = ('Helvetica', 14), width 
 bt = tk.Button(f, text = '*', command = mult, font = ('Helvetica', 14), width = 2, bg = '#00ff00')
 bm = tk.Button(f, text = '-', command = minus, font = ('Helvetica', 14), width = 2, bg = '#00ff00')
 bp = tk.Button(f, text = '+', command = plus, font = ('Helvetica', 14), width = 2, bg = '#00ff00')
+bx = tk.Button(f, text = '%', command = tax, font = ('Helvetica', 14), width = 2, bg = '#00ff00')
 be = tk.Button(f, text = '=', command = eq, font = ('Helvetica', 14), width = 2, bg = '#00ff00')
+
 
 b1.grid(row = 4, column = 0)
 b2.grid(row = 4, column = 1)
@@ -110,11 +122,12 @@ b8.grid(row = 2, column = 1)
 b9.grid(row = 2, column = 2)
 b0.grid(row = 5, column = 0)
 bc.grid(row = 1, column = 0)
-be.grid(row = 5, column = 3)
+be.grid(row = 6, column = 3)
 bd.grid(row = 1, column = 3)
 bt.grid(row = 2, column = 3)
 bm.grid(row = 3, column = 3)
-bp.grid(row = 4, column = 3)
+bx.grid(row = 4, column = 3)
+bp.grid(row = 5, column = 3)
 
 e = tk.Entry(f)
 e.grid(row = 0, column = 0, columnspan = 4)
