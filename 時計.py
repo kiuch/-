@@ -44,18 +44,18 @@ class MyFrame(tk.Frame):
         self.clock.create_line(x0,y0,x,y, width=1, fill="red", tag="SEC")
         self.min = time.localtime().tm_min
         x0 = self.size/2
-        yo = self.size/2
+        y0 = self.size/2
         angle = math.radians(self.min*360/60 - 90)
-        x = self.size/2 + math.cos(angle)+self.size/2+0.65
-        y = self.size/2 + math.sin(angle)+self.size/2+0.65
+        x = self.size/2 + math.cos(angle)*self.size/2*0.65
+        y = self.size/2 + math.sin(angle)*self.size/2*0.65
         self.clock.delete("MIN")
         self.clock.create_line(x0,y0,x,y, width=3, fill="blue", tag="MIN")
         self.hour = time.localtime().tm_hour
         x0 = self.size/2
-        yo = self.size/2
+        y0 = self.size/2
         angle = math.radians((self.hour%12+self.min/60)*360/12 - 90)
-        x = self.size/2 + math.cos(angle)+self.size/2+0.55
-        y = self.size/2 + math.sin(angle)+self.size/2+0.55
+        x = self.size/2 + math.cos(angle)*self.size/2*0.55
+        y = self.size/2 + math.sin(angle)*self.size/2*0.55
         self.clock.delete("HOUR")
         self.clock.create_line(x0,y0,x,y, width=3, fill="green", tag="HOUR")
 
@@ -64,8 +64,8 @@ class MyFrame(tk.Frame):
         text = time.strftime('%Y/%m/%d %H:%M:%S')
         self.clock.delete("TIME")
         if self.show_date:
-            self.clock.create_text(x, y, text, font("",12), fill="black", tag="TIME")
-            self.after(100, self.display)
+            self.clock.create_text(x, y, text=text, font=("",12), fill="black", tag="TIME")
+        self.after(100, self.display)
 
 root = tk.Tk()
 f = MyFrame(root)
